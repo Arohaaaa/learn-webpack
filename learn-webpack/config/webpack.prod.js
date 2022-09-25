@@ -3,6 +3,24 @@ const EsLintWebpackPlugin = require("eslint-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
+const getStyleLoaders = (preProcessor) => {
+    return [
+        MiniCssExtractPlugin.loader,
+        "css-loader",
+        {
+            loader: "postcss-loader",
+            options: {
+                postcssOptions: {
+                    plugins: [
+                        "postcss-preset-env", // 能解决大多数样式兼容性问题
+                    ],
+                },
+            },
+        },
+        preProcessor,
+    ].filter(Boolean);
+};
+
 module.exports = {
     entry: "./src/main.js",
     output: {
@@ -14,11 +32,11 @@ module.exports = {
         rules: [
             {
                 test: /\.css$/,
-                use: [MiniCssExtractPlugin.loader, "css-loader"],
+                use: getStyleLoaders(),
             },
             {
                 test: /\.s[ac]ss$/,
-                use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+                use: getStyleLoaders("sass-loader"),
             },
             {
                 test: /\.(png|jpe?g|gif|webp)$/,

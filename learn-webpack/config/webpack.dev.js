@@ -2,6 +2,23 @@ const path = require("path");
 const EsLintWebpackPlugin = require("eslint-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
+const getStyleLoaders = (preProcessor) => {
+    return [
+        "css-loader",
+        {
+            loader: "postcss-loader",
+            options: {
+                postcssOptions: {
+                    plugins: [
+                        "postcss-preset-env", // 能解决大多数样式兼容性问题
+                    ],
+                },
+            },
+        },
+        preProcessor,
+    ].filter(Boolean);
+};
+
 module.exports = {
     entry: "./src/main.js",
     output: {
@@ -12,11 +29,11 @@ module.exports = {
         rules: [
             {
                 test: /\.css$/,
-                use: ["style-loader", "css-loader"],
+                use: getStyleLoaders(),
             },
             {
                 test: /\.s[ac]ss$/,
-                use: ["style-loader", "css-loader", "sass-loader"],
+                use: getStyleLoaders("sass-loader"),
             },
             {
                 test: /\.(png|jpe?g|gif|webp)$/,
