@@ -1,13 +1,14 @@
 module.exports = {
     // 继承 Eslint 规则
     extends: ["eslint:recommended"],
+    parser: "@babel/eslint-parser",
     env: {
         node: true, // 启用node中全局变量
         browser: true, // 启用浏览器中全局变量
         es6: true,
     },
     parserOptions: {
-        ecmaVersion: 2020,
+        ecmaVersion: 6,
         sourceType: "module",
     },
     rules: {
