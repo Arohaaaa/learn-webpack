@@ -4,6 +4,7 @@ module.exports = {
     env: {
         node: true, // 启用node中全局变量
         browser: true, // 启用浏览器中全局变量
+        es6: true,
     },
     parserOptions: {
         ecmaVersion: 6,
