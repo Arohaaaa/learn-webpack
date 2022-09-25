@@ -19,6 +19,11 @@ module.exports = {
             {
                 test: /\.(png|jpe?g|gif|webp)/,
                 type: "asset",
+                parser: {
+                    dataUrlCondition: {
+                        maxSize: 20 * 1024, // 小于10kb的图片会被base64处理
+                    },
+                },
             },
         ],
     },
