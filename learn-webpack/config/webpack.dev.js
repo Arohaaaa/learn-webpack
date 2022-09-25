@@ -46,14 +46,14 @@ module.exports = {
                             },
                         },
                         generator: {
-                            filename: "static/images/[hash:8][ext][query]",
+                            filename: "static/images/[fullhash:8][ext][query]",
                         },
                     },
                     {
                         test: /\.(ttf|woff2?|map4|map3|avi)$/,
                         type: "asset/resource",
                         generator: {
-                            filename: "static/media/[hash:8][ext][query]",
+                            filename: "static/media/[fullhash:8][ext][query]",
                         },
                     },
                     {

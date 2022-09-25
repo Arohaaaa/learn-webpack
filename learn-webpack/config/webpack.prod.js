@@ -26,7 +26,8 @@ module.exports = {
     entry: "./src/main.js",
     output: {
         path: path.resolve(__dirname, "../dist"),
-        filename: "static/js/[name].js",
+        filename: "static/js/[name].[fullhash:8].js", // 入口文件打包输出资源命名方式
+        chunkFilename: "static/js/[name].[fullhash:8].chunk.js", // 动态导入输出资源命名方式
         clean: true,
     },
     module: {
@@ -50,14 +51,14 @@ module.exports = {
                             },
                         },
                         generator: {
-                            filename: "static/images/[hash:8][ext][query]",
+                            filename: "static/images/[fullhash:8][ext][query]",
                         },
                     },
                     {
                         test: /\.(ttf|woff2?|map4|map3|avi)$/,
                         type: "asset/resource",
                         generator: {
-                            filename: "static/media/[hash:8][ext][query]",
+                            filename: "static/media/[fullhash:8][ext][query]",
                         },
                     },
                     {
@@ -96,6 +97,13 @@ module.exports = {
         }),
         new CssMinimizerPlugin(),
     ],
+    optimization: {
+        // 代码分割配置
+        splitChunks: {
+            chunks: "all",
+            // 其他使用默认配置即可
+        },
+    },
     devtool: "source-map",
     mode: "production",
 };
