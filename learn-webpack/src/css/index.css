@@ -1,5 +1,8 @@
 .box1 {
     width: 100px;
     height: 100px;
+    background-size: cover;
     background-color: pink;
+    background-image: url("../images/bh3.png");
+    background-repeat: no-repeat;
 }
