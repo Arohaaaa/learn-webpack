@@ -69,6 +69,7 @@ module.exports = {
         new EsLintWebpackPlugin({
             // 指定检查文件的根目录
             context: path.resolve(__dirname, "../src"),
+            exclude: "node_modules", // 默认值
         }),
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, "../public/index.html"),
