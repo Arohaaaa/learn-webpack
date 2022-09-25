@@ -7,7 +7,12 @@ module.exports = {
         filename: "[name].js",
     },
     module: {
-        rules: [],
+        rules: [
+            {
+                test: /\.css$/,
+                use: ["style-loader", "css-loader"],
+            },
+        ],
     },
     plugins: [],
     mode: "development",
