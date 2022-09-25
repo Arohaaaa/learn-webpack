@@ -64,6 +64,10 @@ module.exports = {
                         test: /\.js$/,
                         exclude: /node_modules/, // 排除node_modules代码不编译
                         loader: "babel-loader",
+                        options: {
+                            cacheDirectory: true, // 开启babel编译缓存
+                            cacheCompression: false, // 缓存文件不要压缩
+                        },
                     },
                 ],
             },
@@ -74,6 +78,12 @@ module.exports = {
             // 指定检查文件的根目录
             context: path.resolve(__dirname, "../src"),
             exclude: "node_modules", // 默认值
+            cache: true, // 开启缓存
+            // 缓存目录
+            cacheLocation: path.resolve(
+                __dirname,
+                "../node_modules/.cache/.eslintcache"
+            ),
         }),
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, "../public/index.html"),
