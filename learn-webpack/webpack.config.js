@@ -18,7 +18,7 @@ module.exports = {
                 use: ["style-loader", "css-loader", "sass-loader"],
             },
             {
-                test: /\.(png|jpe?g|gif|webp)/,
+                test: /\.(png|jpe?g|gif|webp)$/,
                 type: "asset",
                 parser: {
                     dataUrlCondition: {
@@ -27,6 +27,13 @@ module.exports = {
                 },
                 generator: {
                     filename: "static/images/[hash:8][ext][query]",
+                },
+            },
+            {
+                test: /\.(ttf|woff2?|map4|map3|avi)$/,
+                type: "asset/resource",
+                generator: {
+                    filename: "static/media/[hash:8][ext][query]",
                 },
             },
         ],
