@@ -4,7 +4,7 @@ module.exports = {
     entry: "./src/main.js",
     output: {
         path: path.resolve(__dirname, "dist"),
-        filename: "[name].js",
+        filename: "static/js/[name].js",
     },
     module: {
         rules: [
@@ -23,6 +23,9 @@ module.exports = {
                     dataUrlCondition: {
                         maxSize: 20 * 1024, // 小于10kb的图片会被base64处理
                     },
+                },
+                generator: {
+                    filename: "static/images/[hash:8][ext][query]",
                 },
             },
         ],
