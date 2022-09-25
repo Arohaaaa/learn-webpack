@@ -80,5 +80,6 @@ module.exports = {
         }),
         new CssMinimizerPlugin(),
     ],
+    devtool: "source-map",
     mode: "production",
 };
