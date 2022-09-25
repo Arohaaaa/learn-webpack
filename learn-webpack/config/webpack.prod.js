@@ -26,8 +26,8 @@ module.exports = {
     entry: "./src/main.js",
     output: {
         path: path.resolve(__dirname, "../dist"),
-        filename: "static/js/[name].[fullhash:8].js", // 入口文件打包输出资源命名方式
-        chunkFilename: "static/js/[name].[fullhash:8].chunk.js", // 动态导入输出资源命名方式
+        filename: "static/js/[name].[contenthash:8].js", // 入口文件打包输出资源命名方式
+        chunkFilename: "static/js/[name].[contenthash:8].chunk.js", // 动态导入输出资源命名方式
         clean: true,
     },
     module: {
@@ -51,14 +51,16 @@ module.exports = {
                             },
                         },
                         generator: {
-                            filename: "static/images/[fullhash:8][ext][query]",
+                            filename:
+                                "static/images/[contenthash:8][ext][query]",
                         },
                     },
                     {
                         test: /\.(ttf|woff2?|map4|map3|avi)$/,
                         type: "asset/resource",
                         generator: {
-                            filename: "static/media/[fullhash:8][ext][query]",
+                            filename:
+                                "static/media/[contenthash:8][ext][query]",
                         },
                     },
                     {
@@ -93,8 +95,8 @@ module.exports = {
         // 提取css成单独文件
         new MiniCssExtractPlugin({
             // 定义输出文件名和目录
-            filename: "static/css/[name].[fullhash:8].css",
-            chunkFilename: "static/css/[name].[fullhash:8].chunk.css",
+            filename: "static/css/[name].[contenthash:8].css",
+            chunkFilename: "static/css/[name].[contenthash:8].chunk.css",
         }),
         new CssMinimizerPlugin(),
     ],
@@ -103,6 +105,9 @@ module.exports = {
         splitChunks: {
             chunks: "all",
             // 其他使用默认配置即可
+        },
+        runtimeChunk: {
+            name: (entrypoint) => `runtime~${entrypoint.name}`, // runtime文件命名规则
         },
     },
     devtool: "source-map",
