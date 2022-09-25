@@ -93,7 +93,8 @@ module.exports = {
         // 提取css成单独文件
         new MiniCssExtractPlugin({
             // 定义输出文件名和目录
-            filename: "static/css/main.css",
+            filename: "static/css/[name].[fullhash:8].css",
+            chunkFilename: "static/css/[name].[fullhash:8].chunk.css",
         }),
         new CssMinimizerPlugin(),
     ],
